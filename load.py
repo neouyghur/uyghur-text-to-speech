@@ -39,7 +39,7 @@ class TextToSpeech:
     def _play_audio(self, sound, delay):
         try:
             time.sleep(delay)
-            wf = wave.open("usounds/"+sound+".wav", 'rb')
+            wf = wave.open("usounds-short/"+sound+".wav", 'rb')
             p = pyaudio.PyAudio()
             stream = p.open(format=p.get_format_from_width(wf.getsampwidth()),
                             channels=wf.getnchannels(),
