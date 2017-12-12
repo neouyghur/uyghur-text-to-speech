@@ -3,7 +3,7 @@
 import re
 import wave
 import pyaudio
-import thread
+import _thread
 import time
 
 class TextToSpeech:
@@ -29,11 +29,11 @@ class TextToSpeech:
         # for word in re.findall(r"[\w']+",str_input.upper()):
         #     if word in self._l:
         #         list_pron += self._l[word]
-        list_pron = list(str_input.decode('utf8').lower())
+        list_pron = list(str_input.lower())
         print(list_pron)
         delay=0
         for pron in list_pron:
-            thread.start_new_thread(self._play_audio, (pron,delay,))
+            _thread.start_new_thread(self._play_audio, (pron,delay,))
             delay += 0.12
 
     def _play_audio(self, sound, delay):
@@ -64,6 +64,6 @@ class TextToSpeech:
 if __name__ == '__main__':
     tts = TextToSpeech()
     while True:
-        astr = raw_input('Enter a word or phrase: ')
+        astr = input('Enter a word or phrase: ')
         #print(astr)
         tts.get_pronunciation(astr)
